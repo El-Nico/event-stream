@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>about</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-button routerLink="/about">
+                About
+            </ion-button>
+            <ion-button routerLink="/archived">
+                Archived
+            </ion-button>
+            <ion-button routerLink="/home">
+                Event Stream
+            </ion-button>
+            <ion-button routerLink="/add-event">
+                Add Event
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <div>
+        <ion-title>About</ion-title>
+        <ion-text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi possimus iure deserunt soluta debitis officiis! Qui voluptas cumque eum ut ducimus, incidunt, alias aliquam odit placeat magnam aut et sunt debitis quis nemo numquam vitae ipsum in
+            earum a iusto quaerat assumenda? Harum, repellat quam quo dolor rerum tempore consequuntur.</ion-text>
+    </div>
 </ion-content>
