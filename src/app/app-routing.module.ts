@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'archived',
+    loadChildren: () => import('./archived/archived.module').then( m => m.ArchivedPageModule)
+  },
+  {
+    path: 'add-event',
+    loadChildren: () => import('./add-event/add-event.module').then( m => m.AddEventPageModule)
+  },
 ];
 
 @NgModule({
