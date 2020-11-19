@@ -9,14 +9,14 @@ var app = express();
 app.use(bodyParser.json());
 
 //create link to Angular build directory
-var staticDir = __dirname + "/dist/";
+var staticDir = __dirname + "/www/";
 app.use(express.static(staticDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function(err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", { useUnifiedTopology: true }, function(err, client) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -33,12 +33,12 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
     });
 });
 
-// cors origin URL - Allow inbound traffic from origin
-corsOptions = {
-    origin: "Your FrontEnd Website URL",
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.use(cors(corsOptions));
+// // cors origin URL - Allow inbound traffic from origin
+// corsOptions = {
+//     origin: "Your FrontEnd Website URL",
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
+// app.use(cors(corsOptions));
 
 
 // EVENTS API ROUTES BELOW
