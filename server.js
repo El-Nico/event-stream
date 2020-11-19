@@ -16,7 +16,7 @@ app.use(express.static(staticDir));
 var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", { useUnifiedTopology: true }, function(err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URL || "mongodb://localhost:27017/test", { useUnifiedTopology: true }, function(err, client) {
     if (err) {
         console.log(err);
         process.exit(1);
