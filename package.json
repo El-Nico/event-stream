@@ -9,7 +9,8 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "postinstall": "ng build --output-path dist"
     },
     "private": true,
     "dependencies": {
@@ -30,13 +31,15 @@
         "nodemon": "^2.0.6",
         "rxjs": "~6.5.5",
         "tslib": "^2.0.0",
-        "zone.js": "~0.10.3"
+        "zone.js": "~0.10.3",
+        "@angular/cli": "~10.0.5",
+        "@angular/compiler-cli": "~10.0.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.1000.0",
-        "@angular/cli": "~10.0.5",
+
         "@angular/compiler": "~10.0.0",
-        "@angular/compiler-cli": "~10.0.0",
+
         "@angular/language-service": "~10.0.0",
         "@ionic/angular-toolkit": "^2.3.0",
         "@types/node": "^12.11.1",

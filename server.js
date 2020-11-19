@@ -8,6 +8,10 @@ var EVENTS_COLLECTION = "events";
 var app = express();
 app.use(bodyParser.json());
 
+//create link to Angular build directory
+var staticDir = __dirname + "/dist/";
+app.use(express.static(staticDir));
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
@@ -61,13 +65,13 @@ app.get("/api/event", function(req, res) {
 });
 
 app.post("/api/event", function(req, res) {
-    var newContact = req.body;
-    newContact.createDate = new Date();
+    var newEvent = req.body;
+    newEvent.createDate = new Date();
 
     if (!req.body.name) {
         handleError(res, "Invalid user input", "Must provide a name.", 400);
     } else {
-        db.collection(EVENTS_COLLECTION).insertOne(newContact, function(err, doc) {
+        db.collection(EVENTS_COLLECTION).insertOne(newEvent, function(err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to create new contact.");
             } else {
@@ -82,8 +86,36 @@ app.post("/api/event", function(req, res) {
  *    DELETE: deletes event by id
  */
 
-app.get("/api/events/:id", function(req, res) {});
+app.get("/api/events/:id", function(req, res) {
+    db.collection(EVENTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to get event");
+        } else {
+            res.status(200).json(doc);
+        }
+    });
+});
 
-app.put("/api/events/:id", function(req, res) {});
+app.put("/api/events/:id", function(req, res) {
+    var updateDoc = req.body;
+    delete updateDoc._id;
 
-app.delete("/api/events/:id", function(req, res) {});
+    db.collection(EVENTS_COLLECTION).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update event");
+        } else {
+            updateDoc._id = req.params.id;
+            res.status(200).json(updateDoc);
+        }
+    });
+});
+
+app.delete("/api/events/:id", function(req, res) {
+    db.collection(EVENTS_COLLECTION).deleteOne({ _id: new ObjectID(req.params.id) }, function(err, result) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete event");
+        } else {
+            res.status(200).json(req.params.id);
+        }
+    });
+});
