@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  base_url: "https://hidden-sands-47885.herokuapp.com/api"
 };

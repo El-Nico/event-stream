@@ -2,11 +2,19 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+const cors = require("cors");
+require('dotenv').config();
 
-var EVENTS_COLLECTION = "events";
+var EVENTS_COLLECTION = "Events";
 
 var app = express();
+app.use(cors());
+
 app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 //create link to Angular build directory
 var staticDir = __dirname + "/www/";
@@ -16,7 +24,7 @@ app.use(express.static(staticDir));
 var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URL || "mongodb://localhost:27017/test", { useUnifiedTopology: true }, function(err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URL || process.env.MONGO_URL, { useUnifiedTopology: true }, function(err, client) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -119,3 +127,8 @@ app.delete("/api/events/:id", function(req, res) {
         }
     });
 });
+
+//all unmatched routes
+app.get('*', (req, res) => {
+    res.redirect('/')
+})
