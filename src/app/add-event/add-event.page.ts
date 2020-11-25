@@ -69,6 +69,7 @@ export class AddEventPage implements OnInit {
     //post to mongodatabase
     this.dbService.createEvent(newEvent).subscribe(data => {
       console.log(data);
+      this.addEventForm.reset();
     })
   }
 
