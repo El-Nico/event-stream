@@ -8,6 +8,7 @@ require('dotenv').config();
 var EVENTS_COLLECTION = "Events";
 
 var app = express();
+//prevent cors error
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -66,7 +67,7 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new event
  */
 
-app.get("/api/event", function(req, res) {
+app.get("/api/events", function(req, res) {
     db.collection(EVENTS_COLLECTION).find({}).toArray(function(err, docs) {
         if (err) {
             handleError(res, err.message, "Failed to get event.");
@@ -76,7 +77,7 @@ app.get("/api/event", function(req, res) {
     });
 });
 
-app.post("/api/event", function(req, res) {
+app.post("/api/events", function(req, res) {
     var newEvent = req.body;
     newEvent.createDate = new Date();
 
@@ -98,7 +99,7 @@ app.post("/api/event", function(req, res) {
  *    DELETE: deletes event by id
  */
 
-app.get("/api/events/:id", function(req, res) {
+app.get("/api/event/:id", function(req, res) {
     db.collection(EVENTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to get event");
@@ -108,7 +109,7 @@ app.get("/api/events/:id", function(req, res) {
     });
 });
 
-app.put("/api/events/:id", function(req, res) {
+app.put("/api/event/:id", function(req, res) {
     var updateDoc = req.body;
     delete updateDoc._id;
 
@@ -122,7 +123,7 @@ app.put("/api/events/:id", function(req, res) {
     });
 });
 
-app.delete("/api/events/:id", function(req, res) {
+app.delete("/api/event/:id", function(req, res) {
     db.collection(EVENTS_COLLECTION).deleteOne({ _id: new ObjectID(req.params.id) }, function(err, result) {
         if (err) {
             handleError(res, err.message, "Failed to delete event");

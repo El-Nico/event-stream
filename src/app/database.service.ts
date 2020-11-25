@@ -15,7 +15,7 @@ export class DatabaseService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(`${baseUrl}/event`);
+    return this.http.get(`${baseUrl}/events`);
   }
 
   get(id): Observable<any> {
@@ -23,7 +23,7 @@ export class DatabaseService {
   }
 
   createEvent(data): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}/events`, data);
   }
 
   update(id, data): Observable<any> {
