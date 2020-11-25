@@ -22,7 +22,7 @@ export class DatabaseService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  create(data): Observable<any> {
+  createEvent(data): Observable<any> {
     return this.http.post(baseUrl, data);
   }
 

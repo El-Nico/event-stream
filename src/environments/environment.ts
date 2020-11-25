@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url: "http://localhost:8080/api"
+  base_url: "https://hidden-sands-47885.herokuapp.com/api"
 };
 
 /*
