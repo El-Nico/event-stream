@@ -106,9 +106,11 @@ app.get("/api/event/:id", function(req, res) {
 
 app.put("/api/event/:id", function(req, res) {
     var updateDoc = req.body;
-    delete updateDoc._id;
 
-    db.collection(EVENTS_COLLECTION).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function(err, doc) {
+
+    console.log(updateDoc)
+
+    db.collection(EVENTS_COLLECTION).updateOne({ _id: new ObjectID(req.params.id) }, { $set: updateDoc }, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to update event");
         } else {

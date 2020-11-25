@@ -13,7 +13,6 @@ events: Event[];
   ngOnInit(): void {
     this.db.getAll().subscribe(events=>{
       this.events=events
-      console.log(events)
     })
   }
 

@@ -57,25 +57,26 @@ editEventForm:FormGroup
   }
 
   onEdit(){
-
+    var _id=this.eventToEdit._id
     var title = this.editEventForm.value.title
     var description = this.editEventForm.value.description
     var course = this.editEventForm.value.course
     var dueDate = this.editEventForm.value.dueDate
     var dueTime = this.editEventForm.value.dueTime
     var newEvent: Event = {
+      _id,
       title,
       description,
       course,
       dueDate,
       dueTime
     }
-      var id=this.eventToEdit._id
+    console.log(newEvent)
       //edit the event at mongodatabase
-      this.dbService.editEvent(id,newEvent).subscribe(res => {
+      this.dbService.editEvent(_id,newEvent).subscribe(res => {
         console.log(res)
+        window.location.href="/"
       })
-      this.router.navigateByUrl("/")
   }
 
 }
