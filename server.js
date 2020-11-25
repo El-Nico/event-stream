@@ -79,19 +79,13 @@ app.get("/api/events", function(req, res) {
 
 app.post("/api/events", function(req, res) {
     var newEvent = req.body;
-    newEvent.createDate = new Date();
-
-    if (!req.body.name) {
-        handleError(res, "Invalid user input", "Must provide a name.", 400);
-    } else {
-        db.collection(EVENTS_COLLECTION).insertOne(newEvent, function(err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to create new contact.");
-            } else {
-                res.status(201).json(doc.ops[0]);
-            }
-        });
-    }
+    db.collection(EVENTS_COLLECTION).insertOne(newEvent, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new event.");
+        } else {
+            res.status(201).json(doc.ops[0]);
+        }
+    });
 });
 /*  "/api/events/:id"
  *    GET: find event by id
