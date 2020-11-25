@@ -106,7 +106,7 @@ app.get("/api/event/:id", function(req, res) {
 
 app.put("/api/event/:id", function(req, res) {
     var updateDoc = req.body;
-
+    delete updateDoc._id;
 
     console.log(updateDoc)
 
