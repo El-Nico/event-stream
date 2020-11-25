@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-button routerLink="/about">
+                About
+            </ion-button>
+            <ion-button routerLink="/archived">
+                Archived
+            </ion-button>
+            <ion-button routerLink="/home">
+                Event Stream
+            </ion-button>
+            <ion-button routerLink="/add-event">
+                Add Event
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="editEventForm">
+        <ion-grid>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-item>
+                        <ion-label position="floating">Event Title</ion-label>
+                        <ion-input type="text" formControlName="title"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-item>
+                        <ion-label position="floating">Description</ion-label>
+                        <ion-input type="text" formControlName="description"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-item>
+                        <ion-label position="floating">Course(have option for other)</ion-label>
+                        <ion-select type="text" formControlName="course">
+                            <ion-select-option value="Mobile">Mobile Development</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-item>
+                        <ion-label>Due Date</ion-label>
+                        <ion-datetime value="1990-02-19" placeholder="Select
+                          Date" formControlName="dueDate"></ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-item>
+                        <ion-label>Start Time</ion-label>
+                        <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z" placeholder="Select
+                      Time" formControlName="dueTime"></ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-button type="submit" color="primary" expand="block" (click)="onEdit()">
+                        Edit Event
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

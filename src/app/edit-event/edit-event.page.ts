@@ -1,22 +1,22 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { DatabaseService } from '../database.service';
-import { EditService } from '../edit-event/edit.service';
 import { Event } from '../models';
+import { EditService } from './edit.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-event',
-  templateUrl: './add-event.page.html',
-  styleUrls: ['./add-event.page.scss'],
+  selector: 'app-edit-event',
+  templateUrl: './edit-event.page.html',
+  styleUrls: ['./edit-event.page.scss'],
 })
-export class AddEventPage implements OnInit {
-  addEventForm: FormGroup
-  eventToEdit: Event
+export class EditEventPage implements OnInit {
+eventToEdit:Event
+editEventForm:FormGroup
   constructor(
-    private dbService: DatabaseService,
+    private editEventService:EditService,
+    private dbService:DatabaseService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -27,9 +27,12 @@ export class AddEventPage implements OnInit {
       dueDate: null,
       dueTime: null
     }
-   
+    this.editEventService._eventToEdit.subscribe(event => {
+        this.eventToEdit = event
+        placeholderEvent=event
+    })
 
-    this.addEventForm = new FormGroup({
+    this.editEventForm = new FormGroup({
       title: new FormControl(placeholderEvent.title, {
         updateOn: 'blur',
         validators: [Validators.required]
@@ -53,12 +56,13 @@ export class AddEventPage implements OnInit {
     })
   }
 
-  onAddEvent() {
-    var title = this.addEventForm.value.title
-    var description = this.addEventForm.value.description
-    var course = this.addEventForm.value.course
-    var dueDate = this.addEventForm.value.dueDate
-    var dueTime = this.addEventForm.value.dueTime
+  onEdit(){
+
+    var title = this.editEventForm.value.title
+    var description = this.editEventForm.value.description
+    var course = this.editEventForm.value.course
+    var dueDate = this.editEventForm.value.dueDate
+    var dueTime = this.editEventForm.value.dueTime
     var newEvent: Event = {
       title,
       description,
@@ -66,10 +70,12 @@ export class AddEventPage implements OnInit {
       dueDate,
       dueTime
     }
-    //post to mongodatabase
-    this.dbService.createEvent(newEvent).subscribe(data => {
-      console.log(data);
-    })
+      var id=this.eventToEdit._id
+      //edit the event at mongodatabase
+      this.dbService.editEvent(id,newEvent).subscribe(res => {
+        console.log(res)
+      })
+      this.router.navigateByUrl("/")
   }
 
 }

@@ -18,24 +18,20 @@ export class DatabaseService {
     return this.http.get(`${baseUrl}/events`);
   }
 
-  get(id): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
+  getEvent(id): Observable<any> {
+    return this.http.get(`${baseUrl}/event/${id}`);
   }
 
   createEvent(data): Observable<any> {
     return this.http.post(`${baseUrl}/events`, data);
   }
 
-  update(id, data): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  editEvent(id, data): Observable<any> {
+    return this.http.put(`${baseUrl}/event/${id}`, data);
   }
 
   delete(id): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(`${baseUrl}/event/${id}`);
   }
 
   findByTitle(title): Observable<any> {

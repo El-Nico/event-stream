@@ -1,0 +1,24 @@
+<ion-card>
+    <img [src]="imgSrc" />
+    <ion-card-header>
+        <ion-card-subtitle>Timestamp countdown</ion-card-subtitle>
+        <ion-card-title>{{event.title}}</ion-card-title>
+        <ion-card-subtitle>Due on {{event.dueDate}}|{{event.dueTime}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        {{event.description}}
+    </ion-card-content>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-button fill="outline" color="secondary" (click)="doEdit()">
+                <ion-icon slot="start" name="create-outline"></ion-icon>
+                Edit
+            </ion-button>
+            <ion-button color="danger" fill="outline" (click)="doDelete()">
+                Delete
+                <ion-icon slot="end" name="trash-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-card>
