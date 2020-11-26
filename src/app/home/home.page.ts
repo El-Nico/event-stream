@@ -11,8 +11,15 @@ export class HomePage implements OnInit{
 events: Event[];
   constructor(private db:DatabaseService) {}
   ngOnInit(): void {
-    this.db.getAll().subscribe(events=>{
-      this.events=events
+    //get all events from database
+    this.db.getAll().
+    subscribe(events=>{
+      //only display events that are within the deadline on homepage, rest go to archived
+      this.events=events.filter(event=>{
+        var d= new Date(event.dueDate).getTime();
+        var now = new Date().getTime();
+        return d>now;
+      })
     })
   }
 

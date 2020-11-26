@@ -25,7 +25,6 @@ export class AddEventPage implements OnInit {
       description: "test description",
       course: "mobile",
       dueDate: null,
-      dueTime: null
     }
    
 
@@ -45,10 +44,6 @@ export class AddEventPage implements OnInit {
       dueDate: new FormControl(placeholderEvent.dueDate, {
         updateOn: 'blur',
         validators: [Validators.required]
-      }),
-      dueTime: new FormControl(placeholderEvent.dueTime, {
-        updateOn: 'blur',
-        validators: [Validators.required]
       })
     })
   }
@@ -58,13 +53,11 @@ export class AddEventPage implements OnInit {
     var description = this.addEventForm.value.description
     var course = this.addEventForm.value.course
     var dueDate = this.addEventForm.value.dueDate
-    var dueTime = this.addEventForm.value.dueTime
     var newEvent: Event = {
       title,
       description,
       course,
-      dueDate,
-      dueTime
+      dueDate
     }
     //post to mongodatabase
     this.dbService.createEvent(newEvent).subscribe(data => {

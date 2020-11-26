@@ -25,7 +25,6 @@ editEventForm:FormGroup
       description: "test description",
       course: "mobile",
       dueDate: null,
-      dueTime: null
     }
     this.editEventService._eventToEdit.subscribe(event => {
         this.eventToEdit = event
@@ -48,10 +47,6 @@ editEventForm:FormGroup
       dueDate: new FormControl(placeholderEvent.dueDate, {
         updateOn: 'blur',
         validators: [Validators.required]
-      }),
-      dueTime: new FormControl(placeholderEvent.dueTime, {
-        updateOn: 'blur',
-        validators: [Validators.required]
       })
     })
   }
@@ -62,14 +57,12 @@ editEventForm:FormGroup
     var description = this.editEventForm.value.description
     var course = this.editEventForm.value.course
     var dueDate = this.editEventForm.value.dueDate
-    var dueTime = this.editEventForm.value.dueTime
     var newEvent: Event = {
       _id,
       title,
       description,
       course,
-      dueDate,
-      dueTime
+      dueDate
     }
     console.log(newEvent)
       //edit the event at mongodatabase

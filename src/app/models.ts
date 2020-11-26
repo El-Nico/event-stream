@@ -4,5 +4,4 @@ export interface Event {
     description: string
     course:string;
     dueDate:Date;
-    dueTime:Date;
 }

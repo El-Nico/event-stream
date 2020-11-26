@@ -1,9 +1,9 @@
 <ion-card>
     <img [src]="imgSrc" />
     <ion-card-header>
-        <ion-card-subtitle>Timestamp countdown</ion-card-subtitle>
-        <ion-card-title>{{event.title}}</ion-card-title>
-        <ion-card-subtitle>Due on {{event.dueDate}}|{{event.dueTime}}</ion-card-subtitle>
+        <ion-card-subtitle>due in {{timestamp.days}} days {{timestamp.hours}} hours {{timestamp.minutes}} minutes and {{timestamp.seconds}} seconds</ion-card-subtitle>
+        <ion-card-title>{{event.title}} | {{event.course}}</ion-card-title>
+        <ion-card-subtitle>Due on {{event.dueDate| date:'short'}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
         {{event.description}}
@@ -19,6 +19,5 @@
                 <ion-icon slot="end" name="trash-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
-
     </ion-toolbar>
 </ion-card>
