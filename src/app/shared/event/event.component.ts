@@ -68,7 +68,6 @@ timestamp={
   doDelete(){
     const eventId=this.event._id;
     this.dbService.delete(eventId).pipe(take(1)).subscribe(res=>{
-      console.log(res)
       window.location.href="/"
     })
   }

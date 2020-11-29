@@ -10,9 +10,7 @@ const baseUrl = environment.base_url;
 })
 export class DatabaseService {
 
-  constructor(private http: HttpClient) { 
-    console.log(environment.base_url);
-  }
+  constructor(private http: HttpClient) {   }
 
   getAll(): Observable<any> {
     return this.http.get(`${baseUrl}/events`);

@@ -1,31 +1,29 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons>
-            <ion-button routerLink="/about">
-                About
-            </ion-button>
-            <ion-button routerLink="/archived">
-                Archived
-            </ion-button>
-            <ion-button routerLink="/home">
-                Event Stream
-            </ion-button>
-            <ion-button routerLink="/add-event">
-                Add Event
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+<app-navbar-mobile></app-navbar-mobile>
 
 <ion-content>
-    <div>
-        <ion-title>About</ion-title>
-        <ion-text>
-            the purpose of this website is to implement a system where students can create read update delete events like assingments and school functions, the events are then organized using the javascript Date class by order of deadline
-        </ion-text>
-        <br>
-        <ion-text>
-            &copy; 2020 | Nicholas Chibuike-Eruba
-        </ion-text>
+    <div class="about-container">
+        <ion-grid>
+            <ion-row>
+                <ion-col></ion-col>
+                <ion-col>
+                    <div class="centre full-width">
+                        <ion-title>About</ion-title>
+                    </div>
+                </ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="centre">
+                        <ion-text>
+                            the purpose of this website is to implement a system where students can create read update delete events like assingments and school functions, the events are then organized using the javascript Date class by order of deadline | to view overdue events
+                            go to /archived
+                        </ion-text>
+                    </div>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </div>
 </ion-content>
+<app-footer-mobile></app-footer-mobile>

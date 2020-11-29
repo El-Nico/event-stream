@@ -1,23 +1,34 @@
 <ion-card>
-    <img [src]="imgSrc" />
+    <img [src]="imgSrc" class="display-image" />
     <ion-card-header>
-        <ion-card-subtitle>due in {{timestamp.days}} days {{timestamp.hours}} hours {{timestamp.minutes}} minutes and {{timestamp.seconds}} seconds</ion-card-subtitle>
-        <ion-card-title>{{event.title}} | {{event.course}}</ion-card-title>
-        <ion-card-subtitle>Due on {{event.dueDate| date:'short'}}</ion-card-subtitle>
+        <ion-card-subtitle class="centre">due in {{timestamp.days}} days {{timestamp.hours}} hours {{timestamp.minutes}} minutes and {{timestamp.seconds}} seconds</ion-card-subtitle>
+        <ion-card-title class="centre">{{event.title}} | {{event.course}}</ion-card-title>
+        <ion-card-subtitle class="centre">Due on {{event.dueDate| date:'short'}}</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class="centre">
         {{event.description}}
+        <div><a href="https://moodle2020.dorset.ie" target="_blank">go to moodle</a></div>
     </ion-card-content>
     <ion-toolbar>
         <ion-buttons>
-            <ion-button fill="outline" color="secondary" (click)="doEdit()">
-                <ion-icon slot="start" name="create-outline"></ion-icon>
-                Edit
-            </ion-button>
-            <ion-button color="danger" fill="outline" (click)="doDelete()">
-                Delete
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
-            </ion-button>
+            <ion-grid>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-button fill="outline" color="secondary" (click)="doEdit()">
+                                <ion-icon slot="start" name="create-outline"></ion-icon>
+                                Edit
+                            </ion-button>
+                            <ion-button color="danger" fill="outline" (click)="doDelete()">
+                                Delete
+                                <ion-icon slot="end" name="trash-outline"></ion-icon>
+                            </ion-button>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col></ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-buttons>
     </ion-toolbar>
 </ion-card>

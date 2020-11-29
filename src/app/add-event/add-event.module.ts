@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddEventPageRoutingModule } from './add-event-routing.module';
 
 import { AddEventPage } from './add-event.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { AddEventPage } from './add-event.page';
     FormsModule,
     IonicModule,
     AddEventPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [AddEventPage]
 })

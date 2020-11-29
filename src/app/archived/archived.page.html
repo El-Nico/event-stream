@@ -1,23 +1,6 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons>
-            <ion-button routerLink="/about">
-                About
-            </ion-button>
-            <ion-button routerLink="/archived">
-                Archived
-            </ion-button>
-            <ion-button routerLink="/home">
-                Event Stream
-            </ion-button>
-            <ion-button routerLink="/add-event">
-                Add Event
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+<app-navbar-mobile></app-navbar-mobile>
 
-<ion-content [fullscreen]="true">
+<ion-content>
     <!-- a list of expired events -->
     <ion-grid>
         <ion-row>
@@ -28,3 +11,4 @@
     </ion-grid>
 
 </ion-content>
+<app-footer-mobile></app-footer-mobile>
