@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'edit-event/:id',
     loadChildren: () => import('./edit-event/edit-event.module').then( m => m.EditEventPageModule)
   },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
+  {
+    path: 'cal-modal',
+    loadChildren: () => import('./cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
+  },
 ];
 
 @NgModule({

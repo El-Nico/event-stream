@@ -15,11 +15,18 @@ events: Event[];
     this.db.getAll().
     subscribe(events=>{
       //only display events that are within the deadline on homepage, rest go to archived
-      this.events=events.filter(event=>{
+      events=events.filter(event=>{
         var d= new Date(event.dueDate).getTime();
         var now = new Date().getTime();
         return d>now;
       })
+      //sort by next upcoming event
+      events=events.sort((a: Event, b: Event) => {
+        a.dueDate=new Date(a.dueDate);
+        b.dueDate=new Date(b.dueDate)
+        return a.dueDate.getTime() -  b.dueDate.getTime();
+    });
+      this.events=events;
     })
   }
 

@@ -18,11 +18,18 @@ events:Event[]
     this.db.getAll().
     subscribe(events=>{
       //only display events that have exceeded the deadline on archived, rest go to homepage
-      this.events=events.filter(event=>{
+      events=events.filter(event=>{
         var d= new Date(event.dueDate).getTime();
         var now = new Date().getTime();
         return d<now;
       })
+      //sort by most recent deadline
+      events=events.sort((a: Event, b: Event) => {
+        a.dueDate=new Date(a.dueDate);
+        b.dueDate=new Date(b.dueDate)
+        return b.dueDate.getTime() - a.dueDate.getTime()  ;
+    });
+      this.events=events;
     })
   }
 

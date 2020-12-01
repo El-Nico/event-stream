@@ -5,3 +5,10 @@
 .centre {
     text-align: center;
 }
+
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */
+    ion-card {
+        max-width: 30vw;
+    }
+}
